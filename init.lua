@@ -177,6 +177,7 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 vim.keymap.set('t', 'jk', [[<C-\><C-n>]]) -- no need to escape the '\'
 
 vim.keymap.set('i', 'jk', '<Esc>', { desc = 'Quit insert mode' })
+vim.keymap.set('i', 'kj', '<Esc>', { desc = 'Quit insert mode' })
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 -- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
