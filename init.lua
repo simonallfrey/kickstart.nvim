@@ -237,6 +237,32 @@ require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   'bluz71/vim-moonfly-colors',
+  {
+    'folke/persistence.nvim',
+    event = 'BufReadPre', -- this will only start session saving when an actual file was opened
+    opts = {
+      vim.keymap.set('n', '<leader>qs', function()
+        require('persistence').load()
+      end),
+
+      -- select a session to load
+      vim.keymap.set('n', '<leader>qS', function()
+        require('persistence').select()
+      end),
+
+      -- load the last session
+      vim.keymap.set('n', '<leader>ql', function()
+        require('persistence').load { last = true }
+      end),
+
+      -- stop Persistence => session won't be saved on exit
+      vim.keymap.set('n', '<leader>qd', function()
+        require('persistence').stop()
+      end),
+
+      -- add any custom options here
+    },
+  },
   -- lua with lazy.nvim
   {
     'max397574/better-escape.nvim',
@@ -257,16 +283,16 @@ require('lazy').setup({
     },
     config = true,
   },
-  {
-    'ggandor/leap.nvim', -- easymotion
-    config = function()
-      -- require('leap').create_default_mappings()
-      vim.keymap.set({ 'n', 'x' }, '<leader><leader>', '<Plug>(leap)')
-      vim.keymap.set({ 'n', 'x' }, 'S', '<Plug>(leap-from-window)')
-      vim.keymap.set('o', '<leader><leader>', '<Plug>(leap-forward)')
-      vim.keymap.set('o', 'S', '<Plug>(leap-backward)')
-    end,
-  },
+  -- {
+  --   'ggandor/leap.nvim', -- easymotion
+  --   config = function()
+  --     -- require('leap').create_default_mappings()
+  --     vim.keymap.set({ 'n', 'x' }, '<leader><leader>', '<Plug>(leap)')
+  --     vim.keymap.set({ 'n', 'x' }, 'S', '<Plug>(leap-from-window)')
+  --     vim.keymap.set('o', '<leader><leader>', '<Plug>(leap-forward)')
+  --     vim.keymap.set('o', 'S', '<Plug>(leap-backward)')
+  --   end,
+  -- },
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
